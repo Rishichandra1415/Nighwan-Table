@@ -1,0 +1,170 @@
+<!-- =========================
+   TOP TOOLBAR (ADD + SEARCH)
+========================= -->
+<div class="toolbar">
+  <button mat-raised-button color="accent" (click)="createNewAddress()">
+    Add Address
+  </button>
+
+  <span class="spacer"></span>
+
+  <div class="search-container">
+    <mdb-form-control class="search-field">
+      <input
+        mdbInput
+        type="text"
+        class="form-control"
+        (keyup)="applyFilter($event)"
+        placeholder="Search"
+        #input
+      />
+      <label mdbLabel class="form-label">Search</label>
+    </mdb-form-control>
+  </div>
+</div>
+
+<!-- =========================
+   MAIN BODY
+========================= -->
+<div class="main-body">
+  <!-- =========================
+     TABLE CONTAINER
+  ========================= -->
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- CHECKBOX -->
+      <ng-container matColumnDef="select" sticky>
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (change)="toggleAllRows()"
+            [checked]="isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="selection.toggle(row)"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <!-- NAME -->
+      <ng-container matColumnDef="createdBy" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.createdBy }}</td>
+      </ng-container>
+
+      <!-- PERMANENT ADDRESS -->
+      <ng-container matColumnDef="permanentAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Permanent Address
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.permanentAddress }}</td>
+      </ng-container>
+
+      <!-- PRESENT ADDRESS -->
+      <ng-container matColumnDef="presentAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Present Address
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.presentAddress }}</td>
+      </ng-container>
+
+      <!-- POSTAL CODE -->
+      <ng-container matColumnDef="presentPostalcode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Postal Code</th>
+        <td mat-cell *matCellDef="let row">{{ row.presentPostalcode }}</td>
+      </ng-container>
+
+      <!-- COUNTRY -->
+      <ng-container matColumnDef="presentCountry">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+        <td mat-cell *matCellDef="let row">{{ row.presentCountry }}</td>
+      </ng-container>
+
+      <!-- CITY -->
+      <ng-container matColumnDef="presentCity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+        <td mat-cell *matCellDef="let row">{{ row.presentCity }}</td>
+      </ng-container>
+
+      <!-- PERMANENT COUNTRY -->
+      <ng-container matColumnDef="permanentCountry">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Permanent Country
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.permanentCountry }}</td>
+      </ng-container>
+
+      <!-- PERMANENT STATE -->
+      <ng-container matColumnDef="permanentState">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Permanent State
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.permanentState }}</td>
+      </ng-container>
+
+      <!-- ACTION -->
+      <!-- <ng-container matColumnDef="action" sticky>
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="editUpdateEmp(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteEmp(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container> -->
+
+      <!-- ACTION -->
+      <ng-container matColumnDef="action" sticky>
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+
+        <td mat-cell *matCellDef="let row" class="action-cell">
+          <!-- 3 DOT BUTTON -->
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="actionMenu"
+            aria-label="Action menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <!-- MENU -->
+          <mat-menu #actionMenu="matMenu">
+            <button mat-menu-item (click)="editUpdateEmp(row)">
+              <mat-icon color="primary">edit</mat-icon>
+              <span>Edit</span>
+            </button>
+
+            <button mat-menu-item (click)="deleteEmp(row.id)">
+              <mat-icon color="warn">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <!-- ROWS -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <!-- =========================
+     PAGINATOR
+  ========================= -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+  </mat-paginator>
+</div>

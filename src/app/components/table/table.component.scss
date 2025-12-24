@@ -1,0 +1,172 @@
+/* =========================
+   PAGE BASE
+========================= */
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+/* =========================
+   TOOLBAR (Add + Search)
+========================= */
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  margin-bottom: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
+.search-container {
+  padding: 15px 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.search-field {
+  width: 200px !important;
+}
+
+/* =========================
+   MAIN BODY
+========================= */
+// .main-body {
+//   margin: 0 auto;
+//   max-width: 98%;
+// }
+.main-body {
+  padding: 12px;
+  max-width: 98%;
+  margin: 0 auto;
+}
+
+
+//table container
+.table-container {
+  height: 50vh;              /* 🔒 FIXED HEIGHT */
+  max-height: 50vh;
+  overflow-y: auto;          /* scroll rows */
+  overflow-x: auto;          /* horizontal scroll */
+  position: relative;
+  background: #fff;
+  border-radius: 6px;
+}
+
+/* =========================
+   TABLE BASE
+========================= */
+table {
+  width: max-content;
+  min-width: 1200px;
+  border-collapse: collapse;
+}
+
+.mat-table {
+  display: table;
+}
+.mat-row {
+  height: 48px;
+}
+
+
+
+th.mat-header-cell {
+  white-space: nowrap;
+  overflow: visible;     /* 🔥 THIS FIXES "Na" */
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+.mat-row:hover {
+  background-color: #f5f5f5;
+}
+
+/* =========================
+   FOOTER / PAGINATOR
+========================= */
+.table-footer,
+mat-paginator {
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  padding: 8px 12px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+  /* Let page scroll on mobile */
+  .table-container {
+    max-height: none;
+  }
+
+  th.mat-header-cell,
+  td.mat-cell {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  table {
+    min-width: 900px;
+  }
+}
+
+/* =========================
+   STICKY LEFT COLUMNS
+========================= */
+
+/* Checkbox */
+.mat-column-select {
+  position: sticky;
+  left: 0;
+  z-index: 60;
+  background: #fff;
+  width: 50px;
+  min-width: 50px;
+}
+
+
+
+.mat-column-createdBy {
+  position: sticky;
+  left: 120px;              /* checkbox (50) + id (70) */
+  z-index: 58;
+  background: #fff;
+
+  min-width: 180px;         /* 🔥 IMPORTANT */
+  max-width: 180px;
+  width: 180px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Action column alignment */
+.action-cell {
+  display: flex;
+  justify-content: center;
+}
+
+/* Sticky action column */
+.mat-column-action {
+  position: sticky;
+  right: 0;
+  background: #fff;
+  z-index: 6;
+  width: 80px;
+}
+
