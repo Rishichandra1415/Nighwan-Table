@@ -1,35 +1,34 @@
-<!-- =========================
-   TOP TOOLBAR (ADD + SEARCH)
-========================= -->
-<div class="toolbar">
-  <button mat-raised-button color="accent" (click)="createNewAddress()">
-    Add Address
-  </button>
-
-  <span class="spacer"></span>
-
-  <div class="search-container">
-    <mdb-form-control class="search-field">
-      <input
-        mdbInput
-        type="text"
-        class="form-control"
-        (keyup)="applyFilter($event)"
-        placeholder="Search"
-        #input
-      />
-      <label mdbLabel class="form-label">Search</label>
-    </mdb-form-control>
-  </div>
-</div>
-
-<!-- =========================
+<!-- 
    MAIN BODY
-========================= -->
+ -->
 <div class="main-body">
-  <!-- =========================
-     TABLE CONTAINER
-  ========================= -->
+  <div class="toolbar">
+    <!-- <button mat-raised-button color="accent" (click)="createNewAddress()">
+    <i class="fa-solid fa-plus"></i>
+  </button> -->
+
+    <span class="spacer"></span>
+
+    <div class="search-container">
+      <mdb-form-control class="search-field">
+        <input
+          mdbInput
+          type="text"
+          class="form-control"
+          (keyup)="applyFilter($event)"
+          placeholder="Search"
+          #input
+        />
+        <label mdbLabel class="form-label">Search</label>
+      </mdb-form-control>
+    </div>
+    <div style="padding: 8px">
+      <button mat-raised-button color="accent" (click)="createNewAddress()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <!-- TABLE CONTAINER -->
   <div class="table-container mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- CHECKBOX -->
