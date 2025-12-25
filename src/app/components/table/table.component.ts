@@ -143,17 +143,49 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
 //add
-  createNewAddress(): void {
-    const dialogRef = this.dialog.open(AddAddressComponent, {
-      width: '700px'
-    });
+  // createNewAddress(): void {
+  //   const dialogRef = this.dialog.open(AddAddressComponent, {
+  //     width: '700px'
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.dataSource.data = [...this.dataSource.data, result];
-      }
-    });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       this.dataSource.data = [...this.dataSource.data, result];
+  //     }
+  //   });
+  // }
+
+
+
+createNewAddress() {
+  const dialogRef = this.dialog.open(AddAddressComponent, {
+    width: '600px'
+  });
+
+  dialogRef.afterClosed().subscribe((saved) => {
+    if (!saved) return;
+
+    // ✅ auto refresh UI
+ this.dataSource.data = [
+  ...this.dataSource.data,
+  {
+    id: saved.addressId,
+    empRegId: saved.empRegId,
+    createdBy: saved.createdBy,
+
+    presentAddress: saved.presentAddress,
+    presentCity: saved.presentCity,              // ✅ FIX
+    presentPostalcode: saved.presentPostalcode,
+    presentCountry: saved.presentCountry,
+
+    permanentAddress: saved.permanentAddress,
+    permanentCountry: saved.permanentCountry,
+    permanentState: saved.permanentState
   }
+];
+
+  });
+}
 
 //edit
 
