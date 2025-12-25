@@ -13,7 +13,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddressService } from 'src/app/services/address.service'; 
 import { EditAddressComponent } from '../edit-address/edit-address.component';
 import { AddAddressComponent } from '../add-address/add-address.component';
-import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 
 /* Interface for table row */
 export interface AddressData {
@@ -143,53 +142,80 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
 //add
-  // createNewAddress(): void {
-  //   const dialogRef = this.dialog.open(AddAddressComponent, {
-  //     width: '700px'
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.dataSource.data = [...this.dataSource.data, result];
-  //     }
-  //   });
-  // }
+// createNewAddress() {
 
 
+//   const dialogRef = this.dialog.open(AddAddressComponent, {
+//     width: '600px'
+//   });
 
-createNewAddress() {
+//   dialogRef.afterClosed().subscribe((saved) => {
+//     if (!saved) return;
+
+//     // ✅ auto refresh UI
+//  this.dataSource.data = [
+//   ...this.dataSource.data,
+//   {
+//     id: saved.addressId,
+//     empRegId: saved.empRegId,
+//     createdBy: saved.createdBy,
+
+//     presentAddress: saved.presentAddress,
+//     presentCity: saved.presentCity,              // ✅ FIX
+//     presentPostalcode: saved.presentPostalcode,
+//     presentCountry: saved.presentCountry,
+
+//     permanentAddress: saved.permanentAddress,
+//     permanentCountry: saved.permanentCountry,
+//     permanentState: saved.permanentState
+//   }
+// ];
+//     this.loadAddresses();
+//   });
+// }
+createNewAddress(): void {
   const dialogRef = this.dialog.open(AddAddressComponent, {
     width: '600px'
   });
 
-  dialogRef.afterClosed().subscribe((saved) => {
+  dialogRef.afterClosed().subscribe(saved => {
     if (!saved) return;
 
-    // ✅ auto refresh UI
- this.dataSource.data = [
-  ...this.dataSource.data,
-  {
-    id: saved.addressId,
-    empRegId: saved.empRegId,
-    createdBy: saved.createdBy,
-
-    presentAddress: saved.presentAddress,
-    presentCity: saved.presentCity,              // ✅ FIX
-    presentPostalcode: saved.presentPostalcode,
-    presentCountry: saved.presentCountry,
-
-    permanentAddress: saved.permanentAddress,
-    permanentCountry: saved.permanentCountry,
-    permanentState: saved.permanentState
-  }
-];
-
+    // 🔥 ONLY reload from API
+    this.loadAddresses();
   });
 }
 
+
 //edit
 
-editUpdateEmp(row: AddressData) {
+// editUpdateEmp(row: AddressData) {
+
+//   this.addressService.getAddressByEmpRegId(row.empRegId).subscribe(apiData => {
+
+//     const dialogRef = this.dialog.open(EditAddressComponent, {
+//       width: '600px',
+//       data: apiData
+//     });
+
+//     dialogRef.afterClosed().subscribe(formData => {
+//       if (!formData) return; // ✅ fixed
+
+//       const payload = { ...apiData, ...formData };
+
+//       this.addressService.updateAddress(apiData.addressId, payload).subscribe({
+//         next: () => {
+//           this.addressService.loadEmployees(); //  auto refresh UI
+//         },
+//         error: err => {
+//           console.error('Update failed', err);
+//         }
+//       });
+//     });
+
+//   });
+// }
+editUpdateEmp(row: AddressData): void {
 
   this.addressService.getAddressByEmpRegId(row.empRegId).subscribe(apiData => {
 
@@ -199,17 +225,16 @@ editUpdateEmp(row: AddressData) {
     });
 
     dialogRef.afterClosed().subscribe(formData => {
-      if (!formData) return; // ✅ fixed
+      if (!formData) return;
 
       const payload = { ...apiData, ...formData };
 
       this.addressService.updateAddress(apiData.addressId, payload).subscribe({
         next: () => {
-          this.addressService.loadEmployees(); // 🔥 auto refresh UI
+          // 🔥 OPTION 1: reload only
+          this.loadAddresses();
         },
-        error: err => {
-          console.error('Update failed', err);
-        }
+        error: err => console.error('Update failed', err)
       });
     });
 
@@ -217,38 +242,32 @@ editUpdateEmp(row: AddressData) {
 }
 
 
-
-
-
-
 //delete
-  deleteEmp(id: any): void {
-    if (!confirm('Are you sure?')) return;
+  // deleteEmp(id: any): void {
+  //   if (!confirm('Are you sure?')) return;
 
-    this.addressService.deleteAddress(id).subscribe({
-      next: () => {
-        this.dataSource.data = this.dataSource.data.filter(d => d.id !== id);
-      },
-      error: err => console.error('Delete failed', err)
-    });
-  }
+  //   this.addressService.deleteAddress(id).subscribe({
+  //     next: () => {
+  //       this.dataSource.data = this.dataSource.data.filter(d => d.id !== id);
+  //     },
+  //     error: err => console.error('Delete failed', err)
+  //   });
+  // }
+
+  deleteEmp(id: number): void {
+  if (!confirm('Are you sure?')) return;
+
+  this.addressService.deleteAddress(id).subscribe({
+    next: () => {
+      this.loadAddresses();
+    },
+    error: err => console.error('Delete failed', err)
+  });
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
