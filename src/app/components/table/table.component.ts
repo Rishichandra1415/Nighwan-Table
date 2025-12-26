@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddressService } from 'src/app/services/address.service'; 
 import { EditAddressComponent } from '../edit-address/edit-address.component';
 import { AddAddressComponent } from '../add-address/add-address.component';
-
+import { ToastrService } from 'ngx-toastr';
 /* Interface for table row */
 export interface AddressData {
   id: number;
@@ -57,7 +57,8 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   constructor(
     private addressService: AddressService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toaster :ToastrService
   ) {}
 
   /* -------------------- INIT -------------------- */
@@ -159,32 +160,7 @@ createNewAddress(): void {
 
 //edit
 
-// editUpdateEmp(row: AddressData) {
 
-//   this.addressService.getAddressByEmpRegId(row.empRegId).subscribe(apiData => {
-
-//     const dialogRef = this.dialog.open(EditAddressComponent, {
-//       width: '600px',
-//       data: apiData
-//     });
-
-//     dialogRef.afterClosed().subscribe(formData => {
-//       if (!formData) return; // ✅ fixed
-
-//       const payload = { ...apiData, ...formData };
-
-//       this.addressService.updateAddress(apiData.addressId, payload).subscribe({
-//         next: () => {
-//           this.addressService.loadEmployees(); //  auto refresh UI
-//         },
-//         error: err => {
-//           console.error('Update failed', err);
-//         }
-//       });
-//     });
-
-//   });
-// }
 editUpdateEmp(row: AddressData): void {
 
   this.addressService.getAddressByEmpRegId(row.empRegId).subscribe(apiData => {
@@ -212,19 +188,10 @@ editUpdateEmp(row: AddressData): void {
 
 
 //delete
-  // deleteEmp(id: any): void {
-  //   if (!confirm('Are you sure?')) return;
-
-  //   this.addressService.deleteAddress(id).subscribe({
-  //     next: () => {
-  //       this.dataSource.data = this.dataSource.data.filter(d => d.id !== id);
-  //     },
-  //     error: err => console.error('Delete failed', err)
-  //   });
-  // }
+ 
 
   deleteEmp(id: number): void {
-  if (!confirm('Are you sure?')) return;
+  //if (!confirm('Are you sure?')) return;
 
   this.addressService.deleteAddress(id).subscribe({
     next: () => {
@@ -232,6 +199,7 @@ editUpdateEmp(row: AddressData): void {
     },
     error: err => console.error('Delete failed', err)
   });
+  this.toaster.warning("Deleted SuccessFull")
 }
 
 

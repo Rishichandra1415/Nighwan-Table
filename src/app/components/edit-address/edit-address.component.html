@@ -1,5 +1,4 @@
-<div class="closeIcon">
-  <!-- Close icon -->
+<!-- <div class="closeIcon">
   <h4 class="mb-3">Edit Address</h4>
 
   <button
@@ -8,113 +7,133 @@
     mat-dialog-close
     aria-label="Close"
   >
-    <i class="fa-solid fa-xmark fa-3x"></i>
+    <i class="cc fa-solid fa-circle-xmark fa-2xl" style="color: #ffd43b"></i>
   </button>
+</div> -->
+
+<div>
+  <!-- icons and edit addresses  -->
+  <div class="closeIcon">
+    <!-- Close icon -->
+    <h4 class="mb-3">Edit Address</h4>
+
+    <button
+      type="button"
+      class="btn btn-link p-0 text-muted"
+      mat-dialog-close
+      aria-label="Close"
+    >
+      <i class="cc fa-solid fa-circle-xmark fa-2xl"></i>
+    </button>
+  </div>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="main">
+      <!-- Name -->
+      <mdb-form-control>
+        <input
+          mdbInput
+          type="text"
+          class="form-control"
+          formControlName="createdBy"
+        />
+        <label mdbLabel class="form-label">Name</label>
+      </mdb-form-control>
+
+      <!-- Permanent Country -->
+      <mdb-form-control>
+        <input
+          mdbInput
+          type="text"
+          class="form-control"
+          formControlName="permanentCountry"
+        />
+        <label mdbLabel class="form-label">Permanent Country</label>
+      </mdb-form-control>
+
+      <!-- Present Address (full width) -->
+      <mdb-form-control class="mdbPresentAdd">
+        <input
+          mdbInput
+          type="text"
+          class="form-control"
+          formControlName="presentAddress"
+        />
+        <label mdbLabel class="form-label">Present Address</label>
+      </mdb-form-control>
+
+      <!-- Present City -->
+      <mdb-form-control>
+        <input
+          mdbInput
+          type="text"
+          autocomplete="off"
+          class="form-control"
+          formControlName="presentCity"
+        />
+        <label mdbLabel class="form-label">Present City</label>
+      </mdb-form-control>
+
+      <!-- Present Postal Code -->
+      <mdb-form-control>
+        <input
+          mdbInput
+          autocomplete="off"
+          type="text"
+          class="form-control"
+          formControlName="presentPostalcode"
+        />
+        <label mdbLabel class="form-label">Postal Code</label>
+      </mdb-form-control>
+
+      <!-- Present Country -->
+      <mdb-form-control>
+        <input
+          mdbInput
+          autocomplete="off"
+          type="text"
+          class="form-control"
+          formControlName="presentCountry"
+        />
+        <label mdbLabel class="form-label">Present Country</label>
+      </mdb-form-control>
+
+      <!-- Permanent State -->
+      <mdb-form-control>
+        <input
+          mdbInput
+          autocomplete="off"
+          type="text"
+          class="form-control"
+          formControlName="permanentState"
+        />
+        <label mdbLabel class="form-label">Permanent State</label>
+      </mdb-form-control>
+
+      <!-- Permanent Address (full width) -->
+      <mdb-form-control class="mdbPresentAdd">
+        <input
+          mdbInput
+          autocomplete="off"
+          type="text"
+          class="form-control"
+          formControlName="permanentAddress"
+        />
+        <label mdbLabel class="form-label">Permanent Address</label>
+      </mdb-form-control>
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex justify-content-end gap-2 px-4 pb-3">
+      <button type="button" class="btn btn-outline-secondary" mat-dialog-close>
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="editForm.invalid"
+      >
+        Update
+      </button>
+    </div>
+  </form>
 </div>
-
-<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-  <div class="main">
-    <!-- Name -->
-    <mdb-form-control>
-      <input
-        mdbInput
-        type="text"
-        class="form-control"
-        formControlName="createdBy"
-      />
-      <label mdbLabel class="form-label">Name</label>
-    </mdb-form-control>
-
-    <!-- Permanent Country -->
-    <mdb-form-control>
-      <input
-        mdbInput
-        type="text"
-        class="form-control"
-        formControlName="permanentCountry"
-      />
-      <label mdbLabel class="form-label">Permanent Country</label>
-    </mdb-form-control>
-
-    <!-- Present Address (full width) -->
-    <mdb-form-control class="mdbPresentAdd">
-      <input
-        mdbInput
-        type="text"
-        class="form-control"
-        formControlName="presentAddress"
-      />
-      <label mdbLabel class="form-label">Present Address</label>
-    </mdb-form-control>
-
-    <!-- Present City -->
-    <mdb-form-control>
-      <input
-        mdbInput
-        type="text"
-        autocomplete="off"
-        class="form-control"
-        formControlName="presentCity"
-      />
-      <label mdbLabel class="form-label">Present City</label>
-    </mdb-form-control>
-
-    <!-- Present Postal Code -->
-    <mdb-form-control>
-      <input
-        mdbInput
-        autocomplete="off"
-        type="text"
-        class="form-control"
-        formControlName="presentPostalcode"
-      />
-      <label mdbLabel class="form-label">Postal Code</label>
-    </mdb-form-control>
-
-    <!-- Present Country -->
-    <mdb-form-control>
-      <input
-        mdbInput
-        autocomplete="off"
-        type="text"
-        class="form-control"
-        formControlName="presentCountry"
-      />
-      <label mdbLabel class="form-label">Present Country</label>
-    </mdb-form-control>
-
-    <!-- Permanent State -->
-    <mdb-form-control>
-      <input
-        mdbInput
-        autocomplete="off"
-        type="text"
-        class="form-control"
-        formControlName="permanentState"
-      />
-      <label mdbLabel class="form-label">Permanent State</label>
-    </mdb-form-control>
-
-    <!-- Permanent Address (full width) -->
-    <mdb-form-control class="mdbPresentAdd">
-      <input
-        mdbInput
-        autocomplete="off"
-        type="text"
-        class="form-control"
-        formControlName="permanentAddress"
-      />
-      <label mdbLabel class="form-label">Permanent Address</label>
-    </mdb-form-control>
-  </div>
-
-  <!-- Actions -->
-  <div class="d-flex justify-content-end gap-2 px-4 pb-3">
-    <button type="button" class="btn btn-outline-secondary" mat-dialog-close>
-      Cancel
-    </button>
-    <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">
-      Update
-    </button>
-  </div>
-</form>

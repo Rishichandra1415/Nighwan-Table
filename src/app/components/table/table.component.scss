@@ -1,12 +1,5 @@
-/* =========================
-   PAGE BASE
-========================= */
-html,
-body {
-  height: auto;
-  min-height: 100%;
-  overflow-y: auto;
-}
+
+
 
 /* =========================
    TOOLBAR (Add + Search)
@@ -15,18 +8,19 @@ body {
   display: flex;
   align-items: center;
   padding: 0 16px;
-  margin-bottom: 8px;
+  //margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
+// .spacer {
+//   flex: 1 1 auto;
+// }
 
 /* =========================
    SEARCH BAR
 ========================= */
 .search-container {
-  padding: 15px 0;
+  padding: 10px 0;
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -38,14 +32,14 @@ body {
 
 //main body
 .main-body {
-  // height: 100vh;
+   //height: 100vh;
   // margin: 0 auto;
   // display: flex;
   // flex-direction:column;
   padding: 12px;
   max-width: 98%;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: hidden!important;
 }
 
 
@@ -69,6 +63,7 @@ table {
   width: max-content;
   min-width: 1200px;
   border-collapse: collapse;
+
 }
 
 .mat-table {
@@ -77,12 +72,9 @@ table {
 .mat-row {
   height: 48px;
 }
-
-
-
 th.mat-header-cell {
   white-space: nowrap;
-  overflow: visible;     /* 🔥 THIS FIXES "Na" */
+  overflow: visible;     /*  THIS FIXES "Na" */
 }
 
 /* =========================
@@ -118,9 +110,9 @@ mat-paginator {
     padding: 8px;
   }
 
-  table {
-    min-width: 900px;
-  }
+  // table {
+  //  // min-width: 9000px;
+  // }
 }
 
 /* =========================
@@ -137,15 +129,13 @@ mat-paginator {
   min-width: 50px;
 }
 
-
-
 .mat-column-createdBy {
   position: sticky;
   left: 120px;              /* checkbox (50) + id (70) */
   z-index: 58;
   background: #fff;
 
-  min-width: 180px;         /* 🔥 IMPORTANT */
+  min-width: 180px;         /*  IMPORTANT */
   max-width: 180px;
   width: 180px;
 
@@ -170,9 +160,6 @@ mat-paginator {
   z-index: 6;
   width: 80px;
 }
-
-
-
 //add icon
 
 .addIcon{

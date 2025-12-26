@@ -1,3 +1,11 @@
+html,
+body {
+  height:auto;
+  min-height: 100%;
+  overflow-x: auto;
+  overflow: hidden !important;
+}
+
 
 .app-header {
   background-color: #673ab7; /* purple like before */
