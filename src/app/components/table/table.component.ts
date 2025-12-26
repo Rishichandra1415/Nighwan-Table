@@ -142,37 +142,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
 //add
-// createNewAddress() {
 
-
-//   const dialogRef = this.dialog.open(AddAddressComponent, {
-//     width: '600px'
-//   });
-
-//   dialogRef.afterClosed().subscribe((saved) => {
-//     if (!saved) return;
-
-//     // ✅ auto refresh UI
-//  this.dataSource.data = [
-//   ...this.dataSource.data,
-//   {
-//     id: saved.addressId,
-//     empRegId: saved.empRegId,
-//     createdBy: saved.createdBy,
-
-//     presentAddress: saved.presentAddress,
-//     presentCity: saved.presentCity,              // ✅ FIX
-//     presentPostalcode: saved.presentPostalcode,
-//     presentCountry: saved.presentCountry,
-
-//     permanentAddress: saved.permanentAddress,
-//     permanentCountry: saved.permanentCountry,
-//     permanentState: saved.permanentState
-//   }
-// ];
-//     this.loadAddresses();
-//   });
-// }
 createNewAddress(): void {
   const dialogRef = this.dialog.open(AddAddressComponent, {
     width: '600px'
@@ -181,7 +151,7 @@ createNewAddress(): void {
   dialogRef.afterClosed().subscribe(saved => {
     if (!saved) return;
 
-    // 🔥 ONLY reload from API
+    // ONLY reload from API
     this.loadAddresses();
   });
 }
@@ -231,7 +201,6 @@ editUpdateEmp(row: AddressData): void {
 
       this.addressService.updateAddress(apiData.addressId, payload).subscribe({
         next: () => {
-          // 🔥 OPTION 1: reload only
           this.loadAddresses();
         },
         error: err => console.error('Update failed', err)

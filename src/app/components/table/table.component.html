@@ -22,11 +22,10 @@
         <label mdbLabel class="form-label">Search</label>
       </mdb-form-control>
     </div>
-    <div style="padding: 8px">
-      <button mat-raised-button color="accent" (click)="createNewAddress()">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-    </div>
+
+    <button class="addIcon" (click)="createNewAddress()">
+      <i class="ss fa-solid fa-circle-plus fa-3x"></i>
+    </button>
   </div>
   <!-- TABLE CONTAINER -->
   <div class="table-container mat-elevation-z8">
@@ -164,6 +163,6 @@
   <!-- =========================
      PAGINATOR
   ========================= -->
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+  <mat-paginator [pageSizeOptions]="[8, 10, 25, 100]" showFirstLastButtons>
   </mat-paginator>
 </div>

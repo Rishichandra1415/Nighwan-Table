@@ -1,12 +1,5 @@
 <!-- Header with title + close icon -->
-<div
-  style="
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px 0 24px;
-  "
->
+<div class="headerTitleClose">
   <h4 class="mb-3">Add Address</h4>
 
   <button
@@ -21,14 +14,7 @@
 
 <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
   <!-- Grid layout -->
-  <div
-    style="
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      padding: 24px;
-    "
-  >
+  <div class="gridLayout">
     <!-- Employee Reg ID -->
     <mdb-form-control>
       <input
@@ -44,6 +30,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="createdBy"
@@ -52,9 +39,10 @@
     </mdb-form-control>
 
     <!-- Present Address (full width) -->
-    <mdb-form-control style="grid-column: span 2">
+    <mdb-form-control class="presentAdd">
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="presentAddress"
@@ -66,6 +54,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="presentCity"
@@ -77,6 +66,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="presentPostalcode"
@@ -88,6 +78,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="presentCountry"
@@ -99,6 +90,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="permanentState"
@@ -107,9 +99,10 @@
     </mdb-form-control>
 
     <!-- Permanent Address (full width) -->
-    <mdb-form-control style="grid-column: span 2">
+    <mdb-form-control class="presentAdd">
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="permanentAddress"
@@ -118,9 +111,10 @@
     </mdb-form-control>
 
     <!-- Permanent Country -->
-    <mdb-form-control style="grid-column: span 2">
+    <mdb-form-control class="presentAdd">
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="permanentCountry"

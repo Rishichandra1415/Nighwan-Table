@@ -1,13 +1,6 @@
-<div
-  style="
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px 0 24px;
-  "
->
+<div class="closeIcon">
   <!-- Close icon -->
-  <h4 class="mb-3">Edit Employee</h4>
+  <h4 class="mb-3">Edit Address</h4>
 
   <button
     type="button"
@@ -15,19 +8,12 @@
     mat-dialog-close
     aria-label="Close"
   >
-    <i class="fas fa-circle-xmark"></i>
+    <i class="fa-solid fa-xmark fa-3x"></i>
   </button>
 </div>
 
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-  <div
-    style="
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      padding: 24px;
-    "
-  >
+  <div class="main">
     <!-- Name -->
     <mdb-form-control>
       <input
@@ -51,7 +37,7 @@
     </mdb-form-control>
 
     <!-- Present Address (full width) -->
-    <mdb-form-control style="grid-column: span 2">
+    <mdb-form-control class="mdbPresentAdd">
       <input
         mdbInput
         type="text"
@@ -66,6 +52,7 @@
       <input
         mdbInput
         type="text"
+        autocomplete="off"
         class="form-control"
         formControlName="presentCity"
       />
@@ -76,6 +63,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="presentPostalcode"
@@ -87,6 +75,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="presentCountry"
@@ -98,6 +87,7 @@
     <mdb-form-control>
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="permanentState"
@@ -106,9 +96,10 @@
     </mdb-form-control>
 
     <!-- Permanent Address (full width) -->
-    <mdb-form-control style="grid-column: span 2">
+    <mdb-form-control class="mdbPresentAdd">
       <input
         mdbInput
+        autocomplete="off"
         type="text"
         class="form-control"
         formControlName="permanentAddress"

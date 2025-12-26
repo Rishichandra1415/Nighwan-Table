@@ -2,4 +2,21 @@
   border-color: #dc3545 !important;
 }
 
+.headerTitleClose{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px 0 24px;
+  
+}
+.gridLayout{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 24px;
+    
+}
 
+.presentAdd{
+  grid-column: span 2
+}
