@@ -23,7 +23,12 @@
       </mdb-form-control>
     </div>
 
-    <button class="addIcon" (click)="createNewAddress()">
+    <button
+      matTooltip="Add Address"
+      matTooltipPosition="below"
+      class="addIcon"
+      (click)="createNewAddress()"
+    >
       <i class="ss fa-solid fa-circle-plus fa-3x"></i>
     </button>
   </div>
@@ -132,6 +137,8 @@
         <td mat-cell *matCellDef="let row" class="action-cell">
           <!-- 3 DOT BUTTON -->
           <button
+            matTooltip="Edit"
+            matTooltipPosition="below"
             mat-icon-button
             [matMenuTriggerFor]="actionMenu"
             aria-label="Action menu"

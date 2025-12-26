@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 /* ---------- Angular Material Modules ---------- */
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -66,6 +66,7 @@ import { EditAddressComponent } from './components/edit-address/edit-address.com
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MatTooltipModule,//hovering
 
     /* Angular Material */
     MatTableModule,
