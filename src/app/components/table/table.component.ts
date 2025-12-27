@@ -199,12 +199,16 @@ editUpdateEmp(row: AddressData): void {
     },
     error: err => console.error('Delete failed', err)
   });
-  this.toaster.warning("Deleted SuccessFull")
-}
+  this.toaster.error('Item deleted successfully', 'Deleted', {
+    closeButton: true,  // This removes the X button
+    timeOut: 3000,
+    progressBar: true,
+    positionClass: 'toast-top-right'
+  });
 
 
 
 }
 
 
-
+}
